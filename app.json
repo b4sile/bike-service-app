@@ -1,6 +1,7 @@
 {
   "expo": {
     "name": "bike-service-app",
+    "jsEngine": "hermes",
     "slug": "bike-service-app",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -11,10 +12,9 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
+      "jsEngine": "jsc",
       "supportsTablet": true
     },
     "android": {
