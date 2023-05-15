@@ -24,7 +24,11 @@ export default observer(function App() {
   return (
     <SafeAreaProvider>
       <NavigationContainer>
-        <Tab.Navigator>
+        <Tab.Navigator
+          screenOptions={{
+            tabBarHideOnKeyboard: true,
+          }}
+        >
           <Tab.Screen
             name="Home"
             component={Home}
