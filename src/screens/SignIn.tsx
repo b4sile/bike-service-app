@@ -2,7 +2,7 @@ import { useNavigation } from '@react-navigation/native';
 import { Button, Dialog, Input, Text } from '@rneui/themed';
 import { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
-import { userService } from '../api/userApi';
+import { userService } from '../api/userService';
 
 export default function SignIn() {
   const navigation = useNavigation();
@@ -13,8 +13,8 @@ export default function SignIn() {
   const onSignIn = (): void => {
     userService
       .signIn({ email, password })
-      .then((data) => {
-        console.log(data);
+      .then(() => {
+        navigation.navigate('Home' as never);
       })
       .catch(() => {
         setVisible(true);

@@ -15,11 +15,17 @@ import UserStore from './src/store/UserStore';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import MenuStack from './src/screens/MenuStack';
 import AuthStack from './src/screens/AuthStack';
+import { useEffect } from 'react';
+import { userService } from './src/api/userService';
 
 const Tab = createBottomTabNavigator();
 
 export default observer(function App() {
   const isAuth = UserStore.isAuth;
+
+  useEffect(() => {
+    userService.getCurrentUser().then();
+  }, []);
 
   return (
     <SafeAreaProvider>
