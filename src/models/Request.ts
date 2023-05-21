@@ -5,7 +5,7 @@ export const requestStatuses = {
   Canceled: 'Отменена',
 };
 
-type RequestStatusType = keyof typeof requestStatuses;
+export type RequestStatusType = keyof typeof requestStatuses;
 
 export interface Request {
   id: number;

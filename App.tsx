@@ -17,6 +17,8 @@ import MenuStack from './src/screens/MenuStack';
 import AuthStack from './src/screens/AuthStack';
 import { useEffect } from 'react';
 import { userService } from './src/api/userService';
+import WithoutAuth from './src/components/WithoutAuth';
+import CommonModal from './src/components/CommonModal';
 
 const Tab = createBottomTabNavigator();
 
@@ -52,7 +54,7 @@ export default observer(function App() {
           />
           <Tab.Screen
             name="Request"
-            component={Request}
+            component={isAuth ? Request : WithoutAuth}
             options={{
               headerTitle: 'Заявка',
               title: 'Заявка',
@@ -67,7 +69,7 @@ export default observer(function App() {
           />
           <Tab.Screen
             name="Notifications"
-            component={Notifications}
+            component={isAuth ? Notifications : WithoutAuth}
             options={{
               headerTitle: 'Уведомления',
               title: 'Уведомления',
@@ -115,6 +117,7 @@ export default observer(function App() {
           )}
         </Tab.Navigator>
       </NavigationContainer>
+      <CommonModal />
     </SafeAreaProvider>
   );
 });

@@ -1,14 +1,14 @@
 import { useNavigation } from '@react-navigation/native';
-import { Button, Dialog, Input, Text } from '@rneui/themed';
+import { Button, Input, Text } from '@rneui/themed';
 import { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { userService } from '../api/userService';
+import ModalsStore from '../store/ModalsStore';
 
 export default function SignIn() {
   const navigation = useNavigation();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [visible, setVisible] = useState(false);
 
   const onSignIn = (): void => {
     userService
@@ -16,8 +16,10 @@ export default function SignIn() {
       .then(() => {
         navigation.navigate('Home' as never);
       })
-      .catch(() => {
-        setVisible(true);
+      .catch((err) => {
+        ModalsStore.addCommonModalItem({
+          message: 'Неверный логин или пароль!',
+        });
       });
   };
 
@@ -53,9 +55,6 @@ export default function SignIn() {
           onPress={() => navigation.navigate('SignUp' as never)}
         />
       </View>
-      <Dialog isVisible={visible} onBackdropPress={() => setVisible(false)}>
-        <Text>Неверный логин или пароль!</Text>
-      </Dialog>
     </View>
   );
 }

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { ScrollView, StyleSheet } from 'react-native';
 import { Request } from '../models/Request';
 import { requestService } from '../api/requestService';
 import UserStore from '../store/UserStore';

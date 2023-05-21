@@ -1,13 +1,28 @@
 import { Button, Input } from '@rneui/themed';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { User } from '../models/User';
 import UserStore from '../store/UserStore';
+import { userService } from '../api/userService';
 
 export default function Profile() {
   const [user, setUser] = useState<User>(
     UserStore.currentUser ? { ...UserStore.currentUser } : { id: -1, email: '' }
   );
+
+  useEffect(() => {
+    userService.getCurrentUser().then((value) => {
+      if (value) {
+        setUser({ ...value });
+      }
+    });
+  }, []);
+
+  const onSave = () => {
+    userService.updateCurrentUser(user).then((value) => {
+      setUser(value);
+    });
+  };
 
   return (
     <View style={styles.container}>
@@ -54,7 +69,7 @@ export default function Profile() {
         </View>
       </View>
       <View style={styles.bottomBtn}>
-        <Button title="Сохранить" disabled={!user.email} />
+        <Button title="Сохранить" disabled={!user.email} onPress={onSave} />
       </View>
     </View>
   );

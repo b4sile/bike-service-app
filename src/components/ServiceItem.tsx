@@ -28,7 +28,7 @@ export default function ServiceItem({ service, style }: ServiceProps) {
         <Text>{service.name}</Text>
       </View>
       <View>
-        <Text>{service.price}</Text>
+        <Text>{service.price}р</Text>
       </View>
     </View>
   );
