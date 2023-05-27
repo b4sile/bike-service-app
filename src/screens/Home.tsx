@@ -37,6 +37,7 @@ export default function Home() {
             source={require('../../assets/main-image.png')}
           />
         </View>
+        <Text style={styles.servicesText}>Список наших услуг:</Text>
         {services.map((service, idx) => (
           <ServiceItem
             service={service}
@@ -53,6 +54,11 @@ const styles = StyleSheet.create({
   container: {
     paddingLeft: 10,
     paddingRight: 10,
+  },
+  servicesText: {
+    fontSize: 16,
+    marginBottom: 10,
+    fontWeight: '500',
   },
   logo: {
     width: 50,

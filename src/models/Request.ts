@@ -12,6 +12,9 @@ export interface Request {
   userId: number;
   status: RequestStatusType;
   description: string;
+  isOuterRequest: boolean;
+  latitude: number;
+  longitude: number;
   createdAt: string;
   updatedAt: string;
 }

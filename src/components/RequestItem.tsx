@@ -1,6 +1,8 @@
 import { StyleProp, View, ViewStyle } from 'react-native';
 import { Text } from '@rneui/themed';
 import { Request, requestStatuses } from '../models/Request';
+import { format } from 'date-fns';
+import ru from 'date-fns/locale/ru';
 
 interface RequestItemProps {
   request: Request;
@@ -30,7 +32,12 @@ export default function RequestItem({
       ]}
     >
       <View>
-        <Text>Заявка №{index}</Text>
+        <Text>
+          Заявка №{index} от{' '}
+          {format(new Date(request.createdAt), 'dd MMMM H:mm', {
+            locale: ru,
+          })}
+        </Text>
       </View>
       <View>
         <Text>{requestStatuses[request.status]}</Text>
